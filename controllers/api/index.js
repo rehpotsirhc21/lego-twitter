@@ -1,7 +1,11 @@
-const router = require('express').Router()
-const profilePicRoutes = require('./profilepic.js')
+const router = require('express').Router();
 
-router.use('/profilepic', profilePicRoutes);
+// const userRoutes = require('./user');
+// const postRoutes = require('./post');
+const commentRoutes = require('./comment');
 
+// router.use('/users', userRoutes);
+// router.use('/posts', postRoutes);
+router.use('/comments', commentRoutes);
 
 module.exports = router;
