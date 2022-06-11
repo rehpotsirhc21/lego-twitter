@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { User, Post, Comment, ProfilePic } = require('../../models');
+const { User, Post, Comment, Like, ProfilePic } = require('../../models');
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -72,5 +72,31 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+router.post('/', (req, res) => {
+    Post.create({
+        title: req.body.title,
+        post_body: req.body.post_body,
+        user_id: req.session.user_id
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err)
+    });
+});
+
+router.put('/like', (req, res) => {
+    if(req.session) {
+        Post.upvote({ ...req.body, user_id: req.session.user_id }, { Like, Comment, User })
+        .then(updatedLikeData => res.json(updatedLikeData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    }
+});
+
+router.put()
 
 module.exports = router;
