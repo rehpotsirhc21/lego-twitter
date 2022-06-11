@@ -28,7 +28,7 @@ ProfilePic.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: "profilepic",
+        modelName: "profilepic"
     }
 )
 
