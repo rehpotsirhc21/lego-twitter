@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { ProfilePic } = require('../../models')
+const { ProfilePic, User } = require('../../models')
 
 
 router.get('/', (req, res) => {
@@ -16,6 +16,29 @@ router.get('/', (req, res) => {
             console.log(err)
             res.status(500).json(err)
     })
+})
+router.get('/:fig_theme', (req, res) =>
+{
+    ProfilePic.findAll({
+        where: {
+            fig_theme: req.params.fig_theme
+        }
+    })
+        .then(dbProfilePicData =>
+        {
+            if (!dbProfilePicData)
+            {
+                res.status(400).json({ message: 'No Mini-Figs in that theme' })
+                return
+            }
+            res.json(dbProfilePicData)
+        })
+        .catch(err =>
+        {
+            console.log(err)
+            res.status(500).json(err)
+    })
+
 })
 
 module.exports = router
