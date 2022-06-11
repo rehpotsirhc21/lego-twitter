@@ -15,7 +15,7 @@ ProfilePic.init(
             allowNull: false
         },
         fig_name: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         fig_url: {
@@ -28,7 +28,7 @@ ProfilePic.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: "profilepic",
+        modelName: "profilepic"
     }
 )
 

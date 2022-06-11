@@ -1,4 +1,4 @@
-const { ProfilePic } = require('../models')
+const { ProfilePic, User } = require('../models')
 
 const profiledata = [
     {
