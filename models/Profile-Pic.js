@@ -15,7 +15,7 @@ ProfilePic.init(
             allowNull: false
         },
         fig_name: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         fig_url: {
