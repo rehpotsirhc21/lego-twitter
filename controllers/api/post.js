@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { User, Post, Comment, Like, ProfilePic } = require('../../models');
+//multer
+const multer = require('multer')
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb){
+//         cb(null, '../uploads/');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, new Date().toISOString() + file.originalname);
+//     } 
+// });
+// const upload = multer({storage: storage})
+const upload = multer({dest: 'uploads/'})
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -8,6 +20,7 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'post_body',
+            'post_img',
             'created_at',
             // [sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
         ],
@@ -42,6 +55,7 @@ router.get('/:id', (req, res) => {
             'id',
             'title',
             'post_body',
+            'post_img',
             'created_at',
             [sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
         ],
@@ -73,11 +87,13 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/', upload.single('post_img'), (req, res) => {
+    console.log(req.file)
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        user_id: req.session.user_id
+        post_img: req.file.path,
+        // user_id: req.body.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
