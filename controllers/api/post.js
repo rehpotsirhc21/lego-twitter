@@ -3,16 +3,20 @@ const sequelize = require('../../config/connection');
 const { User, Post, Comment, Like, ProfilePic } = require('../../models');
 //multer
 const multer = require('multer')
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb){
-//         cb(null, '../uploads/');
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, new Date().toISOString() + file.originalname);
-//     } 
-// });
-// const upload = multer({storage: storage})
-const upload = multer({dest: 'uploads/'})
+const storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        //file name by user
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.originalname);
+    } 
+});
+const upload = multer({storage: storage, limits: {
+    fileSize: 1024 * 1024 * 8
+}});
+// const upload = multer({dest: 'uploads/'})
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -93,7 +97,7 @@ router.post('/', upload.single('post_img'), (req, res) => {
         title: req.body.title,
         post_body: req.body.post_body,
         post_img: req.file.path,
-        // user_id: req.body.user_id
+        //user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
