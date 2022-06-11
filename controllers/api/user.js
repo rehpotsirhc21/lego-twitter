@@ -132,6 +132,19 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+// router.put('/:id', (req, res) =>
+//     {
+//         User.update(
+//             {
+//                 profilepic: req.params.id
+//             },
+//             {
+//                 where: {
+//                     id: req.params.id
+//                 }
+//             }
+//         )
+//     })
 
 router.delete('/:id', (req, res) => {
     User.destroy({
