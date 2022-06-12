@@ -77,6 +77,11 @@ const profiledata = [
         fig_name: 'Hon Solo',
         fig_url: 'https://cdn.rebrickable.com/media/sets/fig-004322/60833.jpg'
     },
+    {
+        fig_theme: 'Star Wars',
+        fig_name: 'Darth Revan',
+        fig_url: 'https://cdn.rebrickable.com/media/sets/fig-001162/73793.jpg'
+    },
     // marvel themed mini fig
     {
         fig_theme: 'Marvel',
