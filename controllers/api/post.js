@@ -12,7 +12,21 @@ const multer = require('multer')
 //     } 
 // });
 // const upload = multer({storage: storage})
-const upload = multer({dest: 'uploads/'})
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb)
+    {
+        cb(null, `./uploads/${req.body.id}`)
+    },
+    filename: function (req, file, cb)
+    {
+        cb(null, file.originalname)
+        // cb(null, Date.now()+ '-' + file.originalname  )
+        // cb(null, file.filename + '-' + Date.now())
+    }
+})
+// const upload = multer({ dest: 'uploads/' })
+const upload = multer({ storage: storage})
 
 router.get('/', (req, res) => {
     Post.findAll({
