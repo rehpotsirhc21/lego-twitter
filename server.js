@@ -19,6 +19,8 @@ const sess = {
 app.use(session(sess))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//need this to have access to the folder
+app.use('/uploads', express.static('uploads'));
 
 app.use(routes);
 
