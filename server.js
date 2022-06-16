@@ -1,6 +1,7 @@
 const express = require("express");
 const routes = require("./controllers");
 const session = require('express-session')
+const exphbs = require('express-handlebars');
 // import sequelize connection
 const sequelize = require("./config/connection");
 const SequlizeStore = require('connect-session-sequelize')(session.Store)
@@ -21,6 +22,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //need this to have access to the folder
 app.use('/uploads', express.static('uploads'));
+app.use(session(sess))
+const hbs = exphbs.create({});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(routes);
 
