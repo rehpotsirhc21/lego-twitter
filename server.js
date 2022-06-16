@@ -9,8 +9,6 @@ const SequlizeStore = require('connect-session-sequelize')(session.Store)
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-<<<<<<< HEAD
-=======
 const sess = {
     secret: 'Super secret secret',
     cokkie: {},
@@ -22,7 +20,6 @@ const sess = {
 }
 const hbs = exphbs.create({});
 app.use(session(sess))
->>>>>>> 7df4a7352be063771a7d0095b14619ec3c184e2b
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -40,16 +37,8 @@ app.use(routes);
 
 // sync sequelize models to the database, then turn on the server
 
-<<<<<<< HEAD
-// sequelize.sync({ force: false }).then(() => {
-//   app.listen(PORT, () => {
-//     console.log(`App listening on port ${PORT}!`);
-//   });
-// });
-=======
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
   });
 });
->>>>>>> 7df4a7352be063771a7d0095b14619ec3c184e2b
