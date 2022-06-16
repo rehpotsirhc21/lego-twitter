@@ -4,7 +4,7 @@ const sequelize = require("../config/connection");
 
 class Post extends Model {
   static upvote(body, models) {
-    return models.Like.create({
+    return models.Vote.create({
       user_id: body.user_id,
       post_id: body.post_id,
     }).then(() => {
@@ -19,9 +19,9 @@ class Post extends Model {
           "created_at",
           [
             sequelize.literal(
-              "(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)"
+              "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
             ),
-            "like_count",
+            "vote_count",
           ],
         ],
         include: [
