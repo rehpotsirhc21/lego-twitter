@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { User, Post, Comment, Like, ProfilePic } = require('../../models');
+const { User, Post, Comment, Vote, ProfilePic } = require('../../models');
 //multer
 const multer = require('multer')
 const storage = multer.diskStorage({
@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
             'post_body',
             'post_img',
             'created_at',
-            // [sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
             {
@@ -61,7 +61,7 @@ router.get('/:id', (req, res) => {
             'post_body',
             'post_img',
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
             {
@@ -106,10 +106,10 @@ router.post('/', upload.single('post_img'), (req, res) => {
     });
 });
 
-router.put('/like', (req, res) => {
+router.put('/vote', (req, res) => {
     if(req.session) {
-        Post.upvote({ ...req.body, user_id: req.session.user_id }, { Like, Comment, User })
-        .then(updatedLikeData => res.json(updatedLikeData))
+        Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+        .then(updatedvoteData => res.json(updatedvoteData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
