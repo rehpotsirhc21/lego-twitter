@@ -65,5 +65,9 @@ User.hasMany(Comment, {
 Post.hasMany(Comment, {
   foreignKey: "post_id",
 });
+ProfilePic.hasMany(User, {
+  foreignKey: 'user_id',
+  onDelete: 'SET NULL'
+})
 
 module.exports = { User, Post, Vote, Comment, ProfilePic };

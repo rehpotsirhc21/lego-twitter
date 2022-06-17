@@ -75,5 +75,27 @@ async function pictureThemeHandler (event)
 }
 function clicked (event)
 {
-    console.log('click', event.path[1].innerText);
+    console.log(event);
+    console.log(event.path[1].childNodes[1].currentSrc)
+    profilepic = event.path[1].childNodes[1].currentSrc
+    fetch('/api/users/p').then(function (response)
+    {
+        if (response.ok)
+        {
+            response.json().then(function (data)
+            {
+                console.log(data[0].id);
+                console.log(profilepic)
+                userid = data[0].id
+                const response = fetch(`/api/users/profilepics/${userid}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        profilepic
+                    }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                document.location.replace('/dashboard')
+            })
+        }
+    })
 }
