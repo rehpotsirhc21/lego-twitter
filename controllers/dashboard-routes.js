@@ -27,7 +27,25 @@ router.get('/', withAuth, (req, res) =>
             console.log(err)
             res.status(500).json(err)
         })
+  // User.findOne({
+  //   where: {
+  //     user_id: req.session.user_id
+  // },
+  //   attributes: [
+  //     'profilepic'
+  //   ]
+  // })
 })
+router.get('/profilepic', (req, res) =>
+{
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("profliepic");
+});
+
 
 
 module.exports = router

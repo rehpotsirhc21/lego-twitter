@@ -10,7 +10,8 @@ const userdata = [
     {
         username: 'Bob',
         email: 'bob@email.com',
-        password: 'root'
+        password: 'root',
+        profilepic:'https://cdn.rebrickable.com/media/sets/fig-012154/96949.jpg'
     },
     {
         username: 'Chris',
