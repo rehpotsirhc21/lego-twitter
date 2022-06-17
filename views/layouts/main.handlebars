@@ -12,18 +12,25 @@
   <div class="wrapper">
     <header>
       <h1>
-        <a href="/">LEGO Twitter</a>
+        <a href="/"><img src="../../img/Lego-Logo.png" height="120" width="200"></a>
       </h1>
         <nav>
-          <span><a href="/">home</a></span> 
+          {{!-- <span><a href="/">home</a></span>  --}}
           {{#if loggedIn}}
-          <a href="/dashboard">dashboard</a>
-          <button id="logout" class="btn-no-style">logout</button>
+          <button id="logout" class="btn">Logout</button>
           {{else}}
-          <a href="/login">login</a>
+          <a href="/login">Login</a>
           {{/if}}
         </nav>
     </header>
+        <div class="sidenav">
+          {{#if loggedIn}}
+          <a href="/dashboard">Dashboard</a>
+          <a href="/posts">Create Post</a>
+          {{else}}
+           <a href="/login">Login</a>
+          {{/if}}
+        </div>
     <main>
       {{{ body }}}
     </main>
@@ -32,6 +39,7 @@
     </footer>
   </div>
 
+          <a href="/dashboard">dashboard</a>
 
 
 
