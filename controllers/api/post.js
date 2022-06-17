@@ -97,7 +97,7 @@ router.post('/', upload.single('post_img'), (req, res) => {
         title: req.body.title,
         post_body: req.body.post_body,
         post_img: req.file.path,
-        //user_id: req.session.user_id
+        user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
