@@ -1,7 +1,5 @@
 window.onload = function ()
 {
-  
-  // const api = (`/api/profilepics/name/${name}`)
   const api = (`/api/users/p`)
   fetch(api).then(function (response)
 {
@@ -9,6 +7,8 @@ window.onload = function ()
   {
     response.json().then(function (data)
     {
+      document.getElementById('Lego-Bin').innerHTML = data[0].username+"'s " + 'Lego Bin'
+      console.log(data[0].username+"'s");
       let pic = data[0].profilepic
       document.querySelector('.profile-Img').src = pic
       console.log(pic);
@@ -17,9 +17,6 @@ window.onload = function ()
         document.querySelector('.profile-Img').src = 'https://rebrickable.com/static/img/nil_mf.jpg';
         return pic
       }
-      // console.log(data);
-      
-      // data[0].profilepic
     })
   }
 })
