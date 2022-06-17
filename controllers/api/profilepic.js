@@ -43,7 +43,13 @@ router.get('/name/:fig_name', (req, res) =>
 {ProfilePic.findAll({
         where: {
         fig_name: req.params.fig_name
+    },
+    include: [
+        {
+            model: User,
+            attributes:['id']
         }
+    ]
 })
     .then(dbProfilePicData =>
         {
@@ -65,8 +71,10 @@ router.get('/theme/:fig_theme', (req, res) =>
 {
     ProfilePic.findAll({
         where: {
-            fig_theme: req.params.fig_theme
-        }
+            fig_theme: req.params.fig_theme,
+        },
+        include:[{model: User}]
+        
     })
         .then(dbProfilePicData =>
         {
