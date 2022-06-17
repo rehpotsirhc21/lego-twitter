@@ -1,33 +1,45 @@
-const router = require('express').Router()
-const sequelize = require('../config/connection')
-const { Post, User, Comment } = require('../models')
-const withAuth = require('../utils/auth')
+const router = require("express").Router();
+const sequelize = require("../config/connection");
+const { Post, User, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
-router.get('/', withAuth, (req, res) =>
-{
+router.get("/", withAuth, (req, res) => {
   Post.findAll({
     where: {
-      // use the ID from the session
       user_id: req.session.user_id
     },
     attributes: [
       'id',
-      'title',
       'post_body',
-      'created_at'
+      'title',
+
+      'created_at',
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attributes: ['username']
+        }
+      },
+      {
+        model: User,
+        attributes: ['username']
+      }
+
     ]
+  })
+    .then((dbPostData) => {
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      res.render("dashboard", { posts, loggedIn: true });
     })
-        .then(dbPostData =>
-        {
-            const posts = dbPostData.map(post => post.get({plain: true}))
-            res.render('dashboard', {posts, loggedIn: true})
-        })
-        .catch(err =>
-        {
-            
-            console.log(err)
-            res.status(500).json(err)
-        })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   // User.findOne({
   //   where: {
   //     user_id: req.session.user_id
@@ -36,9 +48,8 @@ router.get('/', withAuth, (req, res) =>
   //     'profilepic'
   //   ]
   // })
-})
-router.get('/profilepic', (req, res) =>
-{
+});
+router.get("/profilepic", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
     return;
@@ -47,6 +58,4 @@ router.get('/profilepic', (req, res) =>
   res.render("profliepic");
 });
 
-
-
-module.exports = router
+module.exports = router;
