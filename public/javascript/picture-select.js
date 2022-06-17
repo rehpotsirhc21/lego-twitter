@@ -13,12 +13,13 @@ window.onload = function ()
                     
                     if (!themeList.includes(data[i].fig_theme))
                     {
-                        var btnLiEl = document.createElement('li')
+                        // var btnLiEl = document.createElement('div')
                         var themeListEl = document.createElement('button')
                         themeListEl.className = 'Pic-Btn'
                         themeListEl.textContent = data[i].fig_theme
-                        btnLiEl.append(themeListEl)
-                        themeBtnListEl.append(btnLiEl)
+                        // btnLiEl.append(themeListEl)
+                        // themeBtnListEl.append(btnLiEl)
+                        themeBtnListEl.append(themeListEl)
                         themeList.push(data[i].fig_theme)
                         console.log(data[i].fig_theme);
                     }
@@ -57,8 +58,8 @@ async function pictureThemeHandler (event)
                     liElement.className = 'Img-Div'
                     imgEl = document.createElement('img')
                     imgEl.src = data[i].fig_url
-                    imgEl.height = 200
-                    imgEl.width = 200
+                    imgEl.height = 100
+                    imgEl.width = 100
                     liElement.textContent = data[i].fig_name
                     liElement.append(imgEl)
                     picImgEl.append(liElement)
