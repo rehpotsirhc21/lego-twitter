@@ -12,7 +12,29 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
     });
 });
-
+router.get('/p', (req, res) =>
+{
+    User.findAll({
+        where: {
+            id: req.session.user_id
+        }
+    })
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'No User found with this ID'})
+            return;
+        }
+        res.json(dbUserData)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+// router.get('/:profilepic', (req, res) =>
+// {
+//     User.findOne
+// })
 router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password']},
@@ -32,12 +54,12 @@ router.get('/:id', (req, res) => {
                     attributes: ['title']
                 }
             },
-            {
-                model: Post,
-                attributes: ['title'],
-                through: vote,
-                as: 'voted_posts'
-            }
+            // {
+            //     model: Post,
+            //     attributes: ['title'],
+            //     through: Vote,
+            //     as: 'voted_posts'
+            // }
         ]
     })
     .then(dbUserData => {
