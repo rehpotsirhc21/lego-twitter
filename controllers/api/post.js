@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
             'id',
             'title',
             'post_body',
-            // 'post_img',
+            'post_img',
             'created_at',
             [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
@@ -59,7 +59,7 @@ router.get('/:id', (req, res) => {
             'id',
             'title',
             'post_body',
-            // 'post_img',
+            'post_img',
             'created_at',
             [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
@@ -106,7 +106,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/vote', (req, res) => {
+router.put('/upvote', (req, res) => {
     if(req.session) {
         Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
         .then(updatedvoteData => res.json(updatedvoteData))
