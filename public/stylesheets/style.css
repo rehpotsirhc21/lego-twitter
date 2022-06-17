@@ -87,10 +87,9 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background-size: cover;
-    background-position: center;
+    background-size: contain;
     background-attachment: fixed;
-    background-position: 80%;
+    background-position: 100%;
     z-index: 9999;
    
    
