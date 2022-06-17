@@ -26,8 +26,10 @@
                     <textarea name="post-body" id= "post-body"></textarea>
                 </div>
                 <div class="input-group">
-                    <label for='files'>Select File:</label>
-                    <input id='files' type="file" multiple>
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <label for='files'>Select File:</label>
+                        <input id='files' type="file" name="post_img">
+                    </form>
                 </div>
                 <div>
                     <button type="submit">Post</button>
