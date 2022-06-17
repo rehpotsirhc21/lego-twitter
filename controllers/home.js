@@ -48,14 +48,14 @@ router.get("/", (req, res) => {
 });
 
 // get single post
-router.get("/post/:id", (req, res) => {
+router.get("/posts/:id", (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
     },
     attributes: [
       "id",
-      "post_url",
+      "post_body",
       "title",
       "created_at",
       [
@@ -107,5 +107,13 @@ router.get("/login", (req, res) => {
 
   res.render("login");
 });
+router.get('/profilepic', (req, res) =>
+{
+  if (!req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
+  res.render("profliepic");
+});
 module.exports = router;

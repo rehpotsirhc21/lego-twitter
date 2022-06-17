@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    
   }
   
   body, html {
@@ -22,9 +23,9 @@
   }
   
   button {
-    background-color: #225ca3;
+    background-color: blue;
     border: 0;
-    padding: 1%;
+    padding: 15px;
     color: white;
     font-weight: bold;
     transition: background-color .1s;
@@ -67,41 +68,114 @@
   }
   
   .wrapper {
-    width: 100%;
+    /* width: 1000px; */
     min-height: 100%;
-    max-width: 1200px;
+    max-width: 3840px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
   }
   
   header {
-    border-bottom: 1px solid #ccc;
+    background-image: url("../../img/347359.jpg");
+    border-bottom: 10px solid blue;
+    padding: 20px 35px;
+    background-color: var(--tertiary-color);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: 100%;
+    z-index: 9999;
+   
+   
+    /* border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
-    background-color: #333;
+    background-color: #333; */
   }
   
   header h1 {
-    font-size: 1em;
+    font-weight: bold;
+    font-size: 36px;
+    color: yellow;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+    
+    /* font-size: 1em;
     border: 2px outset #7d7d7d;
     border-radius: 5px;
     background-color: #ccc;
-    padding: 1.25rem;
+    padding: 1.25rem; */
   }
   
+  header a {
+    padding: 6px 8px 6px 16px;
+    color: yellow;
+  }
+
   main {
     flex: 1;
     padding: 2% 4%;
+    padding-left: 250px;
+    overflow: hidden;
   }
+
+  .sidenav {
+    background-image: url('../img/347290.jpg');
+    padding-top: 200px;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    float: left;
+    overflow: auto;
+    border-right: 10px solid blue;
+  }
+
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: blue; 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+    display: block;
+  }
+  .sidebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
 
   nav {
       padding: 1.2rem;
       text-align: right;
       white-space: pre;
   }
+ 
+  header nav {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    align-items: center;   
+    list-style: none;
+}
   
   .btn-no-style {
     background: none;
@@ -182,6 +256,10 @@
   .new-post-form input, textarea {
     width: 80%;
   }
+
+  .login-form, .signup-form {
+    font-size: 24px;
+  }
   
   .edit-post-form {
     margin-bottom: 5%;
@@ -197,7 +275,7 @@
   }
   
   footer {
-    border-top: 1px solid #ccc;
+    border-top: 3px solid blue;
     display: flex;
     justify-content: center;
     padding: 1%;
