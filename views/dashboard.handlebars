@@ -13,8 +13,9 @@
         <div>
             <!-- get username from db -->
             <div class="username">
-                <h2>Username</h2>
+                <h2></h2>
             </div>
+            <form class="new-post-form">
             <div class="create-post">
                 <div>
                     <label for="post-title">Title:</label>
@@ -22,7 +23,7 @@
                 </div>
                 <div>
                     <label for="post-body">Text:</label>
-                    <textarea name="post-body"></textarea>
+                    <textarea name="post-body" id= "post-body"></textarea>
                 </div>
                 <div class="input-group">
                     <label for='files'>Select File:</label>
@@ -32,7 +33,24 @@
                     <button type="submit">Post</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </section>
-<script src="/javascript/profilepic.js"></script>
+
+
+{{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>
