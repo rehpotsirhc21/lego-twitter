@@ -90,14 +90,14 @@ router.get('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-
-router.post('/', upload.single('post_img'), (req, res) => {
+// upload.single('post_img'),
+router.post('/', (req, res) => {
     console.log(req.file)
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        post_img: req.file.path,
-        //user_id: req.session.user_id
+        // post_img: req.file.path,
+        user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -106,7 +106,7 @@ router.post('/', upload.single('post_img'), (req, res) => {
     });
 });
 
-router.put('/vote', (req, res) => {
+router.put('/upvote', (req, res) => {
     if(req.session) {
         Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
         .then(updatedvoteData => res.json(updatedvoteData))
@@ -117,31 +117,31 @@ router.put('/vote', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id',  (req, res) => {
     Post.update(
-        {
-            title: req.body.title,
-            post_body: req.body.post_body
-        },
-        {
-            where: {
-                id: req.params.id
-            }
+      {
+        title: req.body.title,
+        post_body: req.body.post_body
+        
+      },
+      {
+        where: {
+          id: req.params.id
         }
-
+      }
     )
-    .then(dbPostData => {
-        if(!dbPostData) {
-            res.status(404).json({ message: 'No post found with this id!'})
-            return;
+      .then(dbPostData => {
+        if (!dbPostData) {
+          res.status(404).json({ message: 'No post found with this id' });
+          return;
         }
         res.json(dbPostData);
-    })
-    .catch(err => {
+      })
+      .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    });
-});
+      });
+  });
 
 router.delete('/:id', (req, res) => {
     Post.destroy({
@@ -161,5 +161,17 @@ router.delete('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+router.put('/upvote', (req, res) => {
+    // custom static method created in models/Post.js
+    if (req.session) {
+      Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+        .then(updatedVoteData => res.json(updatedVoteData))
+        .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+    }
+  });
 
 module.exports = router;

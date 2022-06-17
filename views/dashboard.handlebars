@@ -1,13 +1,13 @@
 <section>
-    <h2>Your LEGO Bin</h2>
+    <h2 id="Lego-Bin"></h2>
     <div>
         <div>
             <div class="user-profile-pic">
                 <!-- get user profile pic url from DB -->
-                <img src="https://cdn.rebrickable.com/media/sets/fig-011632/93849.jpg" width="150" height="150">
+                <img src='' class="profile-Img" width="150" height="150">
             </div>
             <div class="change-profile-pic">
-                <button type="button" class="change-profile-pic-btn">change profile pic</button>
+                <button type="button" class="change-profile-pic-btn">Change Profile Pic</button>
             </div>
         </div>
         <div>
@@ -15,15 +15,43 @@
             <div class="username">
                 <h2>Username</h2>
             </div>
+            <form class="new-post-form">
             <div class="create-post">
-                <input type="text" id="post-title" name="post-title" value="post title">
                 <div>
-                    <textarea name="post-body">create a post</textarea>
+                    <label for="post-title">Title:</label>
+                    <input type="text" id="post-title" name="post-title" value="post title">
                 </div>
                 <div>
-                    <button type="submit">post</button>
+                    <label for="post-body">Text:</label>
+                    <textarea name="post-body" id= "post-body"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for='files'>Select File:</label>
+                    <input id='files' type="file" multiple>
+                </div>
+                <div>
+                    <button type="submit">Post</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </section>
+
+
+{{#if posts.length}}
+<section>
+  <h2>Your Posts</h2>
+  <ol>
+    {{#each posts as |post|}}
+    <li>
+      {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>
+<script src="/javascript/profilepic.js"></script>

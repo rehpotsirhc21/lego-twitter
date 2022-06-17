@@ -17,12 +17,64 @@ router.get('/', (req, res) => {
             res.status(500).json(err)
     })
 })
-router.get('/:fig_theme', (req, res) =>
+router.get('/p/:fig_name', (req, res) =>
 {
     ProfilePic.findAll({
         where: {
-            fig_theme: req.params.fig_theme
+            fig_name: req.session.user_id
         }
+    })
+    .then(dbProfilePicData =>
+        {
+            if (!dbProfilePicData)
+            {
+                res.status(400).json({ message: 'No Mini-Figs in that theme' })
+                return
+            }
+            res.json(dbProfilePicData)
+        })
+        .catch(err =>
+        {
+            console.log(err)
+            res.status(500).json(err)
+    })
+})
+router.get('/name/:fig_name', (req, res) =>
+{ProfilePic.findAll({
+        where: {
+        fig_name: req.params.fig_name
+    },
+    include: [
+        {
+            model: User,
+            attributes:['id']
+        }
+    ]
+})
+    .then(dbProfilePicData =>
+        {
+            if (!dbProfilePicData)
+            {
+                res.status(400).json({ message: 'No Mini-Figs in that theme' })
+                return
+            }
+            res.json(dbProfilePicData)
+        })
+        .catch(err =>
+        {
+            console.log(err)
+            res.status(500).json(err)
+    })
+})
+
+router.get('/theme/:fig_theme', (req, res) =>
+{
+    ProfilePic.findAll({
+        where: {
+            fig_theme: req.params.fig_theme,
+        },
+        include:[{model: User}]
+        
     })
         .then(dbProfilePicData =>
         {
