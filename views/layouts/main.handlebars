@@ -26,12 +26,13 @@
         <div class="sidenav">
           {{#if loggedIn}}
           <a href="/dashboard">Dashboard</a>
-          <a href="/posts">Create Post</a>
+          <a href="/dashboard">Create Post</a>
           {{else}}
            <a href="/login">Login</a>
           {{/if}}
         </div>
     <main>
+      <p>Please click on dashboard to create a post or manage your historical posts.</p>
       {{{ body }}}
     </main>
     <footer>
