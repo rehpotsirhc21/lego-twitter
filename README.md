@@ -6,7 +6,7 @@
   4. [Contribute](#contribute)
   5. [Tests](#tests)
   6. [GitHub](#github)
-  7. [E-mail](#e-mail)]
+  7. [E-mail](#e-mail)
   8. [Links] (#links)
 ## Description
 Project #2 for bootcamp. This is lite version of twitter with a lego theme. 
