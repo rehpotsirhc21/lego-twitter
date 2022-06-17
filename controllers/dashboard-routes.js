@@ -12,6 +12,7 @@ router.get("/", withAuth, (req, res) => {
       'id',
       'post_body',
       'title',
+
       'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
@@ -28,6 +29,7 @@ router.get("/", withAuth, (req, res) => {
         model: User,
         attributes: ['username']
       }
+
     ]
   })
     .then((dbPostData) => {
