@@ -7,7 +7,7 @@
                 <img src='' class="profile-Img" width="150" height="150">
             </div>
             <div class="change-profile-pic">
-                <button type="button" class="change-profile-pic-btn">change profile pic</button>
+                <button type="button" class="change-profile-pic-btn">Change Profile Pic</button>
             </div>
         </div>
         <div>
@@ -16,12 +16,20 @@
                 <h2>Username</h2>
             </div>
             <div class="create-post">
-                <input type="text" id="post-title" name="post-title" value="post title">
                 <div>
-                    <textarea name="post-body">create a post</textarea>
+                    <label for="post-title">Title:</label>
+                    <input type="text" id="post-title" name="post-title" value="post title">
                 </div>
                 <div>
-                    <button type="submit">post</button>
+                    <label for="post-body">Text:</label>
+                    <textarea name="post-body"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for='files'>Select File:</label>
+                    <input id='files' type="file" multiple>
+                </div>
+                <div>
+                    <button type="submit">Post</button>
                 </div>
             </div>
         </div>
