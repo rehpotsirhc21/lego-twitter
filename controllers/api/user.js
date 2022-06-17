@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 router.get('/p', (req, res) =>
 {
     User.findAll({
+        attributes: { exclude: ['password'] },
         where: {
             id: req.session.user_id
         }
@@ -154,19 +155,26 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-// router.put('/:id', (req, res) =>
-//     {
-//         User.update(
-//             {
-//                 profilepic: req.params.id
-//             },
-//             {
-//                 where: {
-//                     id: req.params.id
-//                 }
-//             }
-//         )
-//     })
+router.put('/profilepics/:id', (req, res) =>
+    {
+    User.update(req.body, {
+        individualHooks: false,
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbUserData => {
+        if(!dbUserData) {
+            res.status(404).json({ message: 'No user found with thius ID!'});
+            return;
+        }
+        res.json(dbUserData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
 router.delete('/:id', (req, res) => {
     User.destroy({
