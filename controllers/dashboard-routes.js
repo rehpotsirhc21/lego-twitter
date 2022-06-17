@@ -94,9 +94,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
 });
 router.get('/profilepic', (req, res) =>
 {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+  if (!req.session.loggedIn) {
+      res.redirect("/");
+      return;
   }
 
   res.render("profliepic");

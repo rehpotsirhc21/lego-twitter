@@ -1,3 +1,5 @@
+
+
 window.onload = function ()
 {
   const api = (`/api/users/p`)
@@ -24,7 +26,13 @@ window.onload = function ()
 async function changeProfliePictureHandler (event)
 {
   event.preventDefault()
-
-  document.location.replace('/profilepic')
+  const response = await fetch('/dashboard/profilepic', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  })
+  if (response.ok)
+  {
+    document.location.replace('/dashboard/profilepic')
+  }
 }
 document.querySelector('.change-profile-pic-btn').addEventListener('click', changeProfliePictureHandler)
