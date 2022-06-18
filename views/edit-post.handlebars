@@ -5,10 +5,14 @@
   </h2>
   <form class="edit-post-form">
     <div>
-      <label for= "post-title">Title</label>
-      <input name="post-title" type="text" value="{{post.title}}" />
-      <label for="post-bdy">Text</label>
-      <textarea name = "post-bdy"  value= "{{post.post_body}}">{{post.post_body}}</textarea>
+      <label for= "post-title">Title
+        <input name="post-title" type="text" value="{{post.title}}" />
+      </label>
+      
+      <label for="post-bdy">Text
+        <textarea name = "post-bdy"  value= "{{post.post_body}}">{{post.post_body}}</textarea>
+      </label>
+      
       <span>{{ post.content}}</span>
     </div>
     <div>
