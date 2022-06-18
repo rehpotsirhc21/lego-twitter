@@ -4,18 +4,29 @@ const { User, Post, Comment, Vote, ProfilePic } = require('../../models');
 //multer
 const multer = require('multer')
 const storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        //file name by user
-        cb(null, './uploads/');
+    destination: function (req, res, cb)
+    {
+        cb(null, 'public')
     },
-    filename: function (req, file, cb) {
-        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.originalname);
-    } 
-});
-const upload = multer({storage: storage, limits: {
-    fileSize: 1024 * 1024 * 8
-}});
+    filename: function (req, res, cb)
+    {
+        cb(null, `${file.fieldname}-${Date.now()}`)
+    }
+})
+const upload = multer({storage})
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb){
+//         //file name by user
+//         cb(null, 'uploads');
+//     },
+//     filename: function (req, file, cb) {
+//         // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.originalname);
+//     } 
+// });
+// const upload = multer({storage: storage, limits: {
+//     fileSize: 1024 * 1024 * 8
+// }});
 // const upload = multer({dest: 'uploads/'})
 
 router.get('/', (req, res) => {
@@ -91,12 +102,15 @@ router.get('/:id', (req, res) => {
     });
 });
 // upload.single('post_img'),
-router.post('/', upload.single('post_img'), (req, res) => {
+router.post('/', upload.single('post_img'), (req, res) =>
+{
+    // res.sendFile(`${__dirname}`)
+    // console.log(req.file.path);
     // console.log(req.file)
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        post_img: req.file.path,
+        post_img: req.body.post_img,
         user_id: req.session.user_id,
     })
     .then(dbPostData => res.json(dbPostData))

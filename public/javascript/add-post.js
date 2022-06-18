@@ -9,21 +9,28 @@ async function newFormHandler(event) {
     const response = await fetch(`/api/posts`, {
       method: 'POST',
       body: JSON.stringify({
-        title,
-        post_body,
-        post_img
-      }),
+          title,
+          post_body,
+          post_img,
+        }),
+      
+      
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'undefined'
+        // 'Accept': '*/*'
+        // 'Content-Type': 'multipart/form-data'; 'Boundary': 'X'
+        // 'Content-Type': 'application/x-www-form-urlencoded'
+        // "content-Type": 'application/json'
       }
     });
+  console.log(response);
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
+    // if (response.ok) {
+    //   document.location.replace('/dashboard');
+    // } else {
       
-      alert(response.statusText);
-    }
+    //   alert(response.statusText);
+    // }
   }
   
   document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
