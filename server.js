@@ -30,7 +30,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 //need this to have access to the folder
-app.use('/uploads', express.static('uploads'));
+app.use('/upload', express.static('uploads'));
 app.use(session(sess))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

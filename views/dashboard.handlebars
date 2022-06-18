@@ -7,30 +7,35 @@
                 <img src='' class="profile-Img" width="150" height="150">
             </div>
             <div class="change-profile-pic">
-                <button type="button" class="change-profile-pic-btn">Change Profile Pic</button>
+                <button type="button" class="change-profile-pic-btn button primary">Change Profile Pic</button>
             </div>
         </div>
         <div>
-            <!-- get username from db -->
-            <div class="username">
-                <h2>Username</h2>
-            </div>
+           
             <form class="new-post-form">
             <div class="create-post">
                 <div>
-                    <label for="post-title">Title:</label>
-                    <input type="text" id="post-title" name="post-title" value="post title">
+                    <label for="post-title">Title:
+                        <input type="text" id="post-title" name="post-title" >
+                    </label>
+                    
                 </div>
                 <div>
-                    <label for="post-body">Text:</label>
-                    <textarea name="post-body" id= "post-body"></textarea>
+                    <label for="post-body">Text:
+                        <textarea name="post-body" id= "post-body"></textarea>
+                    </label>
+                    
                 </div>
-                <div class="input-group">
-                    <label for='files'>Select File:</label>
-                    <input id='files' type="file" multiple>
-                </div>
+                {{!-- <div class="input-group">
+                    <form action="/post-img" method="POST" enctype="multipart/form-data">
+                        <label for='file'>Select File:
+                            <input id='file' type="file" name="post_img">
+                        </label>
+                        
+                    </form>
+                </div> --}}
                 <div>
-                    <button type="submit">Post</button>
+                    <button type="submit" class="hollow button primary">Post</button>
                 </div>
             </div>
             </form>
