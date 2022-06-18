@@ -25,5 +25,26 @@ async function newFormHandler(event) {
       alert(response.statusText);
     }
   }
+  // async function postImg(event) {
+  //   event.preventDefault()
+
+  //     const post_img = document.querySelector('[name="post_img"]').value;
+
+  //     const response = await fetch(`/api/posts/post-img`, {
+  //       method: 'post',
+  //       body: JSON.stringify({
+  //         post_img
+  //       })
+  //     });
   
+  //     if (response.ok) {
+  //       document.location.replace('/dashboard');
+  //     } else {
+        
+  //       alert(response.statusText);
+  //     }
+  //   }
+    
+
+
   document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);

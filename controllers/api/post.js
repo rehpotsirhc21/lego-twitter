@@ -107,6 +107,13 @@ router.post('/', upload.single('post_img'), (req, res) => {
     });
 });
 
+router.post('/post-img', upload.single('post_img'), (req, res) => {
+    console.log(req.file.filename)
+    res.send(req.file.filename)
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
+
 router.put('/upvote', (req, res) => {
     if(req.session) {
         Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
