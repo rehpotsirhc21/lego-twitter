@@ -107,7 +107,7 @@ router.post('/', upload.single('post_img'), (req, res) => {
     });
 });
 
-router.put('/vote', (req, res) => {
+router.put('/upvote', (req, res) => {
     if(req.session) {
         Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
         .then(updatedvoteData => res.json(updatedvoteData))

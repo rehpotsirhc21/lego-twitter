@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
+const { Post, User, Comment, Vote } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, (req, res) => {
@@ -96,9 +96,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
 });
 router.get('/profilepic', (req, res) =>
 {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+  if (!req.session.loggedIn) {
+      res.redirect("/");
+      return;
   }
 
   res.render("profliepic");
