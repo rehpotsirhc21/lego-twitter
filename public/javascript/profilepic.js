@@ -9,8 +9,8 @@ window.onload = function ()
   {
     response.json().then(function (data)
     {
-      document.getElementById('Lego-Bin').innerHTML = data[0].username+"'s " + 'Lego Bin'
-      console.log(data[0].username+"'s");
+      document.getElementById('Lego-Bin').innerHTML = data[0].username+"'s " + 'Lego Bin' + " Let's Get Building!"
+      // console.log(data[0].username+"'s" + "let's get building!");
       let pic = data[0].profilepic
       document.querySelector('.profile-Img').src = pic
       console.log(pic);

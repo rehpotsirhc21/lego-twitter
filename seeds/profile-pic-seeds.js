@@ -74,7 +74,7 @@ const profiledata = [
     },
     {
         fig_theme: 'Star Wars',
-        fig_name: 'Hon Solo',
+        fig_name: 'Han Solo',
         fig_url: 'https://cdn.rebrickable.com/media/sets/fig-004322/60833.jpg'
     },
     // marvel themed mini fig
