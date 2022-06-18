@@ -18,6 +18,7 @@ const upload = multer({storage: storage, limits: {
 }});
 // const upload = multer({dest: 'uploads/'})
 
+
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -96,7 +97,7 @@ router.post('/', upload.single('post_img'), (req, res) => {
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        post_img: req.file.path,
+        post_img: req.body.post_img,
         user_id: req.session.user_id,
     })
     .then(dbPostData => res.json(dbPostData))
