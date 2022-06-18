@@ -11,10 +11,7 @@
             </div>
         </div>
         <div>
-            <!-- get username from db -->
-            <div class="username">
-                <h2>Username</h2>
-            </div>
+           
             <form class="new-post-form">
             <div class="create-post">
                 <div>
@@ -31,8 +28,10 @@
                 </div>
                 <div class="input-group">
                     <form action="/post-img" method="POST" enctype="multipart/form-data">
-                        <label for='file'>Select File:</label>
-                        <input id='file' type="file" name="post_img">
+                        <label for='file'>Select File:
+                            <input id='file' type="file" name="post_img">
+                        </label>
+                        
                     </form>
                 </div>
                 <div>
