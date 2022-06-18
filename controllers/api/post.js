@@ -18,6 +18,7 @@ const upload = multer({storage: storage, limits: {
 }});
 // const upload = multer({dest: 'uploads/'})
 
+
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -91,13 +92,13 @@ router.get('/:id', (req, res) => {
     });
 });
 // upload.single('post_img'),
-router.post('/', (req, res) => {
-    console.log(req.file)
+router.post('/', upload.single('post_img'), (req, res) => {
+    // console.log(req.file)
     Post.create({
         title: req.body.title,
         post_body: req.body.post_body,
-        // post_img: req.file.path,
-        user_id: req.session.user_id
+        post_img: req.body.post_img,
+        user_id: req.session.user_id,
     })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
@@ -105,6 +106,13 @@ router.post('/', (req, res) => {
         res.status(500).json(err)
     });
 });
+
+router.post('/post-img', upload.single('post_img'), (req, res) => {
+    console.log(req.file.filename)
+    res.send(req.file.filename)
+}, (error, req, res, next) => {
+    res.status(400).send({error: error.message})
+})
 
 router.put('/upvote', (req, res) => {
     if(req.session) {

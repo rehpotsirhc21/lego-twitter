@@ -30,10 +30,10 @@
                     
                 </div>
                 <div class="input-group">
-                    <label for='files'>Select File:
-                         <input id='files' type="file" multiple>
-                    </label>
-                   
+                    <form action="/post-img" method="POST" enctype="multipart/form-data">
+                        <label for='file'>Select File:</label>
+                        <input id='file' type="file" name="post_img">
+                    </form>
                 </div>
                 <div>
                     <button type="submit" class="hollow button primary">Post</button>

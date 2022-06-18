@@ -11,6 +11,7 @@ router.get("/", withAuth, (req, res) => {
     attributes: [
       'id',
       'post_body',
+      'post_img',
       'title',
       'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -57,6 +58,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     attributes: [
       'id',
       'post_body',
+      'post_img',
       'title',
       'created_at',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
