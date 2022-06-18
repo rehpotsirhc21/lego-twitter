@@ -5,10 +5,14 @@
   </h2>
   <form class="edit-post-form">
     <div>
-      <label for= "post-title">Title</label>
-      <input name="post-title" type="text" value="{{post.title}}" />
-      <label for="post-bdy">Text</label>
-      <textarea name = "post-bdy"  value= "{{post.post_body}}">{{post.post_body}}</textarea>
+      <label for= "post-title">Title
+        <input name="post-title" type="text" value="{{post.title}}" />
+      </label>
+      
+      <label for="post-bdy">Text
+        <textarea name = "post-bdy"  value= "{{post.post_body}}">{{post.post_body}}</textarea>
+      </label>
+      
       <span>{{ post.content}}</span>
     </div>
     <div>
@@ -16,8 +20,8 @@
       |
       <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
     </div>
-    <button type="submit">Save post</button>
-    <button type="button" class="delete-post-btn">Delete post</button>
+    <button type="submit" class= "success button">Save post</button>
+    <button type="button" class="delete-post-btn alert button">Delete post</button>
   </form>
 </article>
 
@@ -27,7 +31,7 @@
   </div>
 
   <div>
-    <button type="submit">add comment</button>
+    <button type="submit" class="primary button">add comment</button>
   </div>
 </form>
 

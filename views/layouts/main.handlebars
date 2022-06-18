@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LEGO TWITTER</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -17,22 +18,22 @@
         <nav>
           {{!-- <span><a href="/">home</a></span>  --}}
           {{#if loggedIn}}
-          <button id="logout" class="btn">Logout</button>
+          <button id="logout" class="btn alert button">Logout</button>
           {{else}}
-          <a href="/login">Login</a>
+          <a href="/login" class="success button">Login</a>
           {{/if}}
         </nav>
     </header>
         <div class="sidenav">
           {{#if loggedIn}}
-          <a href="/dashboard">Dashboard</a>
-          <a href="/dashboard">Create Post</a>
+          <a href="/dashboard" class= "button primary">Dashboard</a>
+          <a href="/dashboard" class="button alert">Create Post</a>
           {{else}}
-           <a href="/login">Login</a>
+           <a href="/login" class="button success" >Login</a>
           {{/if}}
         </div>
     <main>
-      <p>Please click on dashboard to create a post or manage your historical posts.</p>
+      
       {{{ body }}}
     </main>
     <footer>
