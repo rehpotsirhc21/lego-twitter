@@ -29,3 +29,4 @@ langnerc@icloud.com
 GitHub:https://github.com/rehpotsirhc21/lego-twitter
 
 Heroku: https://intense-everglades-57738.herokuapp.com/
+![legoTwitter](https://user-images.githubusercontent.com/99914942/174492262-c3233987-d7cf-42b8-8e42-e90fe0f8b0e2.jpg)
